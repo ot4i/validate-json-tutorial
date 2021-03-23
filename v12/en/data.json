@@ -178,12 +178,12 @@
                     "_runComment": "The full steps for the user to run through the tutorial. Use 'sections' to render paragraphs, 'steps' with a type of 'ordered' or 'unordered' to render HTML lists, and 'substeps' to render nested lists.",
                 "sections":[                            
                             {
-                                "section": "<h4>Use the Flow Exerciser to test the tutorial scenario",
+                                "section": "Use the Flow Exerciser to test out the flow:",
                                 "steps": {
                                     "type": "ordered",
                                     "details": [                                      
                                     {
-                                        "details": "Open <span class='resource'>Validate.msgflow</span>.",
+                                        "details": "Open <span class='resource'>ValidateJSON.msgflow</span>.",
                                         "substeps":{
                                         "type": "unordered",
                                         "details": 
@@ -195,10 +195,10 @@
                                             "details": "Click the Send Message icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png' alt='' />. Two saved messages are provided."
                                         },
                                         {
-                                            "details": "The input message <span class='resource'>ValidationFail</span> contains this data:<br><code>{\"Initials\":\"Fred\",\"Surname\":\"Bloggs\",\"Item\": {\"Code\": 123,\"Description\": \"Crystal Ball\",\"Category\": \"Futuristic Equipment\",\"Price\": \"99.99\",\"Quantity\": 1}}</code>  Note that the Price is provided as a String, although the JSON schema model defines it to be a number. Select this input messages and click Send and your message is sent to the HTTPInput node. You will receive a reply message stating that the message failed validation. After you close the dialog, the path taken through the messageflow will be highlighted."																						
+                                            "details": "The input message <span class='resource'>ValidationFail</span> contains this data:<br><code>{<br>\"Initials\":\"Fred\",<br>\"Surname\":\"Bloggs\",<br>\"Item\": {<br>\"Code\": 123,<br>\"Description\": \"Crystal Ball\",<br>\"Category\": \"Futuristic Equipment\",<br>\"Price\": \"99.99\",<br>\"Quantity\": 1<br>}<br>}</code><br>Note that the Price is provided as a String, although the JSON schema model defines it to be a number. Select this input messages and click Send and your message is sent to the HTTPInput node. You will receive a reply message stating that the message failed validation. After you close the dialog, the path taken through the messageflow will be highlighted."																						
 									},											
 										{
-                                            "details": "The input message <span class='resource'>ValidationPass</span> contains this data:<br><code>{\"Initials\":\"Fred\",\"Surname\":\"Bloggs\",\"Item\": {\"Code\": 123,\"Description\": \"Crystal Ball\",\"Category\": \"Futuristic Equipment\",\"Price\": 99.99,\"Quantity\": 1}}</code>  This version of the message conforms correctly to the JSON schema model which defines the Price as a number. Select this input messages and click Send and your message is sent to the HTTPInput node. You will receive a reply message stating that the message passed validation. After you close the dialog, the path taken through the messageflow will be highlighted."																						
+                                            "details": "The input message <span class='resource'>ValidationPass</span> contains this data:<br><code>{<br>\"Initials\":\"Fred\",<br>\"Surname\":\"Bloggs\",<br>\"Item\": {<br>\"Code\": 123,<br>\"Description\": \"Crystal Ball\",<br>\"Category\": \"Futuristic Equipment\",<br>\"Price\": 99.99,<br>\"Quantity\": 1<br>}<br>}</code><br>This version of the message conforms correctly to the JSON schema model which defines the Price as a number. Select this input messages and click Send and your message is sent to the HTTPInput node. You will receive a reply message stating that the message passed validation. After you close the dialog, the path taken through the messageflow will be highlighted."																						
 				                        }										
                                         ]
                                         }
