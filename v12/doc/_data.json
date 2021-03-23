@@ -32,10 +32,10 @@
 	{
         "_common": 
 		{
-            "name": "Using a Validate node to check a message against an XML schema",
-            "shortDescription": "Learn how to use the Validate node to check a message against an XML schema in a message flow driven by an XML message over HTTP.",
+            "name": "Using a Validate node to check a message against a JSON schema",
+            "shortDescription": "Learn how to use the Validate node to check a message against a JSON schema in a message flow driven by a JSON message over HTTP.",
             "durationText": "This tutorial takes approximately",
-            "durationTime": "10 minutes",
+            "durationTime": "5 minutes",
             "_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
             "resourceToOpen": "MainFlow",
             "helpLink": 
@@ -59,7 +59,7 @@
             "outcomeList": 
 			[
                 {
-                    "title": "Use IBM App Connect Enterprise to validate XML message data in a flow using an XML schema."
+                    "title": "Use IBM App Connect Enterprise to validate JSON message data in a flow using a JSON schema."
                 }
             ],
             "summary": 
@@ -69,7 +69,7 @@
                 "sections": 
 				[
                     {
-                        "section": "This tutorial demonstrates a simple message flow that receives an XML input message over HTTP, and checks the data against an XML schema using a Validate node. Two example input messages are provided, one which will fail validation and one which will pass validation. Graphical mapping nodes are used in both cases to construct a reply message which is returned to the requesting client using an HTTPReply node."
+                        "section": "This tutorial demonstrates a simple message flow that receives a JSON input message over HTTP, and checks the data against a JSON schema using a Validate node. Two example input messages are provided, one which will fail validation and one which will pass validation. Graphical mapping nodes are used in both cases to construct a reply message which is returned to the requesting client using an HTTPReply node."
                     },
                     {
                         "section": "The tutorial requires an ACE integration node owned server, or a standalone server."
@@ -106,13 +106,13 @@
                     "sections": 
 					[
                         {
-                            "section": "When you click Import, one project will be created in your workspace: An application named <span class='application'>ExampleValidate</span>."
+                            "section": "When you click Import, one project will be created in your workspace: An application named <span class='application'>ExampleValidateJSON</span>."
                         },
                         {
-                            "section": "<span class='application'>ExampleValidate</span> provides a single message flow named <span class='resource'>Validate</span> which receives data using an HTTPInput node. This node is configured to expect an XML message which conforms to <span class='resource'>ExampleModel.xsd</span> although the HTTPInput node itself is not set up to validate the message immediately. The next node in the flow is a Validate node which checks the input XML against the XML schema. The message is sent down the Match or Failure terminal depending on whether validation passes or fails. Next the graphical mapping node generates a suitable reply which is returned using the HTTPReply node at the end of the flow."
+                            "section": "<span class='application'>ExampleValidateJSON</span> provides a single message flow named <span class='resource'>ValidateJSON</span> which receives data using an HTTPInput node. This node is configured to expect a JSON message which conforms to the JSON schema named <span class='resource'>OrderSchema.json</span> although the HTTPInput node itself is not set up to validate the message immediately. The next node in the flow is a Validate node which checks the input JSON against the JSON schema. The message is sent down the Match or Failure terminal depending on whether validation passes or fails. Next the graphical mapping node generates a suitable reply which is returned using the HTTPReply node at the end of the flow."
 						},						
                         {
-			    			"section": "Once imported using the link on the right, the provided project is ready to be deployed and tested. To deploy, you can use a provided BAR file, as described on the Prepare tab."
+			    			"section": "Once imported, the provided project is ready to be deployed and tested, as described on the Prepare tab."
 						}
                     ]
                 },
@@ -158,11 +158,8 @@
                 "details":
                   [                    					
 					{ 
-                      "details":"Create an integration node by starting an App Connect Enterprise command console and executing the following commands:<br><code><span class='cmdname'>mqsicreatebroker TESTNODE</span></code><br><code><span class='cmdname'>mqsistart TESTNODE</span></code><br><code><span class='cmdname'>mqsicreateexecutiongroup TESTNODE -e server</span></code>"
-                    },					
-					{ 
-                      "details":"Back in the Toolkit, drag and drop deploy the provided BAR file named <span class='application'>Validate.bar</span> which you will find inside the <span class='application'>ExampleValidate</span> application."
-                    }
+					                      "details":"From the Integration Explorer view in the bottom left corner of the Toolkit, right-click the Integration Servers folder and select the option to <span class='uicontrol'>Create a local integration server</span>. Leave all the options with their default values and click Finish. The local Integration Server will be started, using a project in your Toolkit's workspace as the work directory. Click OK to dismiss the Success dialog."
+					}					
                   ]
                 }
               }
@@ -195,13 +192,13 @@
                                           "details": "Click the Flow Exerciser icon <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start testing the flow (when challenged you do not need to redeploy the flow again)."
                                         },   
 										{
-                                            "details": "Click the Send Message icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png' alt='' />."
+                                            "details": "Click the Send Message icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png' alt='' />. Two saved messages are provided."
                                         },
                                         {
-                                            "details": "Two saved messages are provided.<br>The input message <span class='resource'>ExampleFAIL</span> contains this data:<br><span class='resource'>&lt;Message&gt;&lt;InvalidName&gt;This message will FAIL validation&lt;/InvalidName&gt;&lt;/Message&gt;</span><br>The input message <span class='resource'>ExamplePASS</span> contains this data:<br><span class='resource'>&lt;Message&gt;&lt;Child&gt;This message will PASS validation&lt;/Child&gt;&lt;/Message&gt;</span><br>Select one of these input messages and click Send and your message is sent to the HTTPInput node."
-                				        },											
+                                            "details": "The input message <span class='resource'>ValidationFail</span> contains this data:<br><code>{\"Initials\":\"Fred\",\"Surname\":\"Bloggs\",\"Item\": {\"Code\": 123,\"Description\": \"Crystal Ball\",\"Category\": \"Futuristic Equipment\",\"Price\": \"99.99\",\"Quantity\": 1}}</code>  Note that the Price is provided as a String, although the JSON schema model defines it to be a number. Select this input messages and click Send and your message is sent to the HTTPInput node. You will receive a reply message stating that the message failed validation. After you close the dialog, the path taken through the messageflow will be highlighted."																						
+									},											
 										{
-                                            "details": "After you close the dialog, the path taken through the messageflow is highlighted. Try out both the input messages and note that the reply message reports the result of whether the validation passed or failed."											
+                                            "details": "The input message <span class='resource'>ValidationPass</span> contains this data:<br><code>{\"Initials\":\"Fred\",\"Surname\":\"Bloggs\",\"Item\": {\"Code\": 123,\"Description\": \"Crystal Ball\",\"Category\": \"Futuristic Equipment\",\"Price\": 99.99,\"Quantity\": 1}}</code>  This version of the message conforms correctly to the JSON schema model which defines the Price as a number. Select this input messages and click Send and your message is sent to the HTTPInput node. You will receive a reply message stating that the message passed validation. After you close the dialog, the path taken through the messageflow will be highlighted."																						
 				                        }										
                                         ]
                                         }
@@ -210,7 +207,7 @@
                             }
                         },
 			{
-			    "section": "This tutorial has shown the Validate node check a message against an XML schema."
+			    "section": "This tutorial has shown the Validate node check a message against a JSON schema."
 			}
                     ]
                 },
