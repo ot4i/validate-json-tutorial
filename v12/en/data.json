@@ -146,7 +146,7 @@
                 "overview": 
 				{
                     "name": "Prepare",
-                    "heading": "Create an integration node and deploy the message flow",
+                    "heading": "Create a local integration server",
                     "_prepareComment": "A description of what just happened when the user clicked Import, and what will happen when the user clicks Deploy.",
                     "sections": 
 		     [
@@ -174,11 +174,10 @@
                 "overview": 
 				{
                     "name": "Run",
-                    "heading": "",
+                    "heading": "Use the Flow Exerciser to test out the flow:",
                     "_runComment": "The full steps for the user to run through the tutorial. Use 'sections' to render paragraphs, 'steps' with a type of 'ordered' or 'unordered' to render HTML lists, and 'substeps' to render nested lists.",
                 "sections":[                            
-                            {
-                                "section": "Use the Flow Exerciser to test out the flow:",
+                            {                                
                                 "steps": {
                                     "type": "ordered",
                                     "details": [                                      
